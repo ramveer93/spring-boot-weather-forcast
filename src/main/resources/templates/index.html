@@ -1,0 +1,212 @@
+<!doctype html>
+
+<html lang="en">
+
+
+
+<head>
+
+<!-- Required meta tags -->
+
+<meta charset="utf-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+
+
+
+
+
+<!-- Bootstrap CSS -->
+
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+	integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+	crossorigin="anonymous">
+
+<!-- Font Awesome CSS -->
+
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+	integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN"
+	crossorigin="anonymous">
+
+<link href="css/paper-dashboard.css?v=2.0.1" rel="stylesheet" />
+
+<!-- <link href="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/css/bootstrap4-toggle.min.css" rel="stylesheet"> -->
+
+<title>Weather ForCast</title>
+
+<style type="text/css">
+.bs-example {
+	/* margin: 20px; */
+	width: 100%;
+	height: 200px;
+}
+
+.mydiv {
+	width: 100%;
+	height: 200px;
+}
+
+.myRow {
+	width: 100%;
+	height: 200px;
+}
+
+.zingChartCss {
+	min-height: 450px;
+	width: 100%;
+	height: 100%;
+}
+
+.imgdiv {
+	width: 100%;
+	height: 100px;
+}
+
+.card-img-top {
+	width: 100%;
+	height: 11.5vw;
+	object-fit: cover;
+}
+</style>
+
+</head>
+
+
+
+<body>
+
+	<nav
+		class="navbar nav-pills navbar-expand-md navbar-dark bg-secondary fixed-top sticky-top">
+		<div class="container" id="navId">
+			<div class="navbar-nav">
+				<a href="#" class="nav-item nav-link active"> <i
+					class="fa fa-home"></i> Home
+				</a>
+			</div>
+		</div>
+	</nav>
+
+	<section class="container bg-dark">
+
+		<div class="row">
+			<div class="col">
+				<form>
+					<div class="form-row">
+						<div class="form-group col-md-4">
+							<label for="cityNameInput">City Name</label> <input type="text"
+								class="form-control" id="cityNameInput"
+								aria-describedby="cityNameInput" placeholder="Enter City Name">
+						</div>
+					</div>
+					<button type="submit" class="btn btn-primary">Submit</button>
+					<button type = "submit" class="btn btn-primary" onClick = "document.location.reload(true)">Reload</button>
+				</form>
+			</div>
+		</div>
+
+
+	</section>
+    <br><br>
+	<section class="container">
+		<section class="row">
+			<div class="col-sm">
+				<div class="container">
+					<div class="row" id="items">
+						<div class="col-sm">
+							<div class="card-deck">
+								<div v-for="item in items" class="col">
+									<div class="card bg-info">
+										<div class="card-header">
+											<h5 class="card-title">
+												{{ item.date }}
+											</h5>
+											</div>
+											<hr>
+											<div class="card-body">
+											<table class="table table-striped table-borderless">
+													<tbody>
+														<tr scope="row">
+															<th scope="col">Max temperature </th>
+															<td class="float-right">{{item.maxTemp}}
+															</th>
+														</tr>
+														<tr scope="row">
+															<th scope="col">Min temperature</th>
+															<td class="float-right">{{item.minTemp}}
+															</th>
+														</tr>
+													</tbody>
+												</table>
+										
+										</div>
+										
+											<div class="card-footer">
+												<hr />
+												<div class="card-stats">
+													<span class="badge badge-danger">{{item.message}}</span>
+											</div>
+
+
+									</div>
+								</div><br><br>
+							</div>
+
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+	</section>
+
+	<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+	<script
+		src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+		integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+		crossorigin="anonymous"></script>
+
+	<script
+		src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+		integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+		crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/vue@2.6.11"></script>
+
+	<script src="https://unpkg.com/portal-vue"></script>
+
+	<script src="js/dataVue.js"></script>
+
+
+
+
+
+	<script>
+	
+		$(document).ready(function() {
+			// SUBMIT FORM
+			
+			$("form").submit(function(event) {
+				// Prevent the form from submitting via the browser.
+
+				var inputs = $(this).find('input');
+				// prepare data from input-form
+				var cityName = $(inputs[0]).val()
+				dataVue.getData(cityName);
+				$(inputs[0]).val("");
+				event.preventDefault();
+				
+
+				// reset input data
+
+			});
+
+		});
+	</script>
+
+</body>
+
+
+
+</html>
