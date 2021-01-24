@@ -1,6 +1,6 @@
 pipeline {
     environment {
-    	registry = "ramveer110/demo-boot-weather.jar"
+    	registry = "ramveer110/weather-springboot-app.jar"
     	registryCredential = 'docker_registry_cred'
     	dockerImage = ''
     }
